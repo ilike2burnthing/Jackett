@@ -166,9 +166,8 @@ search:
     nm: "{{ .Keywords }}"
     # all words
     allw: 1
+
   keywordsfilters:
-    - name: diacritics
-      args: replace
     - name: re_replace # S01 to сезон 1
       args: ["(?i)\\bS0*(\\d+)\\b", "сезон $1"]
     - name: re_replace # S01E01 to сезон 1 сері 1
@@ -257,7 +256,7 @@ search:
         - name: re_replace
           args: ["(?i)\\bWEB\\s?DL\\b", "WEB-DL"]
         - name: re_replace
-          args: ["\\[\\]|\\(\\)", ""]
+          args: ["[\\[\\(\\{<«][\\s\\W]*[\\]\\)\\}>»]", ""]
         - name: re_replace
           args: ["^[\\s&,\\.!\\?\\+\\-_\\|\\/':]+", ""]
         - name: re_replace
