@@ -149,7 +149,7 @@ search:
         - name: re_replace
           args: ["^[\\s&,\\.!\\?\\+\\-_\\|\\/':]+", ""]
         - name: re_replace
-          args: ["(?i)^\\((.+?)\\s?\\)", "$1 "]
+          args: ["^\\((.+?)\\s?\\)", "$1 "]
         - name: append
           args: "{{ if .Config.addrussiantotitle }} RUS{{ else }}{{ end }}"
     details:
