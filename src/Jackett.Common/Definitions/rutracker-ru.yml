@@ -523,9 +523,9 @@ search:
         - name: re_replace
           args: ["(?i)\\bWEB[-\\s]?DL[-\\s]?Rip\\b", "WEB-DL"]
         - name: re_replace
-          args: ["(?i)\\bWEB[-\\s]?Rip\\b", "WEB-DL"]
+          args: ["(?i)\\bWEB\\sRip\\b", "WEBRip"]
         - name: re_replace
-          args: ["(?i)\\bWEB\\s?DL\\b", "WEB-DL"]
+          args: ["(?i)\\bWEB\\sDL\\b", "WEB-DL"]
         - name: re_replace
           args: ["[\\[\\(\\{<«][\\s\\W]*[\\]\\)\\}>»]", ""]
         - name: re_replace
