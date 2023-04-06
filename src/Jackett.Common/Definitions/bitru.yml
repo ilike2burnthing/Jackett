@@ -77,18 +77,22 @@ search:
     title:
       selector: a[href^="details.php?id="]
       filters:
-        - name: replace
-          args: ["селезень", "selezen"]
         - name: re_replace
-          args: ["(\\d+(?:-\\d+)?)\\s+сезоны?\\s*[:]*.+?\\((\\d+(?:-\\d+)?)\\s*из\\s*(\\d+)\\)", "(S$1E$2 of $3)"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+[CС]езоны?\\s*[:]*.+?\\((\\d+(?:-\\d+)?)\\s*из\\s*(\\d+)\\)", "(S$1E$2 of $3)"]
         - name: re_replace
-          args: ["(\\d+(?:-\\d+)?)\\s+сезоны?\\s*[:]*.+?\\((\\d+(?:-\\d+)?)\\)", "(S$1E$2)"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+[CС]езоны?\\s*[:]*.+?\\((\\d+(?:-\\d+)?)\\)", "(S$1E$2)"]
         - name: re_replace
-          args: ["(\\d+(?:-\\d+)?)\\s+сезоны?", "(S$1)"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+[CС]езоны?", "(S$1)"]
         - name: re_replace
-          args: ["\\((\\d+(?:-\\d+)?)\\s*из\\s*(\\d+)\\)", "(E$1 of $2)"]
+          args: ["(?i)\\((\\d+(?:-\\d+)?)\\s*из\\s*(\\d+)\\)", "(E$1 of $2)"]
         - name: re_replace
-          args: ["\\s\\|\\sот\\s([\\w\\p{P}\\p{S}]+)$", "-$1"]
+          args: ["(?i)\\bселезень\\b", "selezen"]
+        - name: re_replace
+          args: ["(?i)\\bFiles-x\\b", "Files_x"]
+        - name: re_replace
+          args: ["(?i)\\s\\|\\sот\\s([\\w\\p{P}\\p{S}]+)$", "-$1"]
+        - name: re_replace
+          args: ["\\s\\|\\s(\\w{4,})$", "-$1"]
         - name: re_replace
           args: ["(\\([\\p{IsCyrillic}\\W]+\\))|(^[\\p{IsCyrillic}\\W\\d]+\\/ )|([\\p{IsCyrillic} \\-]+,+)|([\\p{IsCyrillic}]+)", "{{ if .Config.stripcyrillic }}{{ else }}$1$2$3$4{{ end }}"]
         - name: re_replace
