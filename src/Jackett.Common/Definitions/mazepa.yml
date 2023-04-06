@@ -189,66 +189,72 @@ search:
       selector: a[href^="./viewtopic.php?t="]
       filters:
         # normalize to SXXEYY format
-        - name: re_replace
-          args: ["\\s(\\d+),(\\d+)", " $1-$2"]
-        - name: re_replace
-          args: ["(?i)([\\s-])Х+([\\s\\)\\]])", "$1XX$2"]
-        - name: re_replace
-          args: ["(?i)(?:[CС]езони?|Seasons?)\\s*[:]*\\s+(\\d+-\\d+)", "S$1"]
         # Ukrainian
         - name: re_replace
-          args: ["(?i)[CС]езони?\\s*[:]*\\s+(\\d+).+(?:[CС]ері[їяй]|Епізод)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)\\s*з\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?).+?(?:[CС]ері[їяй]|Епізоди?)[\\s:]*(\\d+(?:-\\d+)?)\\s*з\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)(\\d+)\\s+[CС]езони?\\s*[:]*.+?(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+\\s*з\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*[CС]езони?.+?(\\d+(?:-\\d+)?)\\s*з\\s*(\\w?)(?:\\s*[CС]ері[їяй]|Епізоди?)?", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)[CС]езони?\\s*[:]*\\s+(\\d+).+(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+\\s+з\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*[CС]езони?.+?(\\d+(?:-\\d+)?)\\s*(?:[CС]ері[їяй]|Епізоди?)\\s+з\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)[CС]езони?\\s*[:]*\\s+(\\d+).+(?:[CС]ері[їяй]|Епізод)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "S$1E$2"]
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)\\s*з\\s*(\\w?)(?:\\s*[CС]ері[їяй]|Епізоди?)?", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)(\\d+)\\s+[CС]езони?\\s*[:]*.+?(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+", "S$1E$2"]
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)\\s*(?:[CС]ері[їяй]|Епізоди?)\\s+з\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)[CС]езони?\\s*[:]*\\s+(\\d+).+(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+", "S$1E$2"]
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?).+?(?:[CС]ері[їяй]|Епізоди?)[\\s:]*(\\d+(?:-\\d+)?)", "S$1E$2"]
         - name: re_replace
-          args: ["(?i)[CС]езони?\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "S$1"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*[CС]езони?.+?(\\d+(?:-\\d+)?)(?:\\s*[CС]ері[їяй]|Епізоди?)", "S$1E$2"]
+        - name: re_replace
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)(?:\\s*[CС]ері[їяй]|Епізоди?)", "S$1E$2"]
+        - name: re_replace
+          args: ["(?i)[CС]езони?[\\s:]*(\\d+(?:-\\d+)?)", "S$1"]
         - name: re_replace
           args: ["(?i)(\\d+(?:-\\d+)?)\\s+[CС]езони?", "S$1"]
         - name: re_replace
-          args: ["(?i)(?:[CС]ері[їяй]|Епізод)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)\\s*з\\s*([\\w?])", "E$1 of $2"]
+          args: ["(?i)(?:[CС]ері[їяй]|Епізоди?)[\\s:]*(\\d+(?:-\\d+)?)\\s*з\\s*(\\w?)", "E$1 of $2"]
         - name: re_replace
-          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+\\s+з\\s*([\\w?])", "E$1 of $2"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*з\\s*(\\w?)(?:\\s*[CС]ері[їяй]|Епізоди?)", "E$1 of $2"]
         - name: re_replace
-          args: ["(?i)(?:[CС]ері[їяй]|Епізод)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "E$1"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізоди?)\\s+з\\s*(\\w?)", "E$1 of $2"]
         - name: re_replace
-          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізод)+", "E$1"]
+          args: ["(?i)(?:[CС]ері[їяй]|Епізоди?)[\\s:]*(\\d+(?:-\\d+)?)", "E$1"]
+        - name: re_replace
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:[CС]ері[їяй]|Епізоди?)", "E$1"]
         # English
         - name: re_replace
-          args: ["(?i)Season\\s*[:]*\\s+(\\d+).+(?:Episodes?)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)\\s*of\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?).+?(?:Episodes?)[\\s:]*(\\d+(?:-\\d+)?)\\s*of\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)(\\d+)\\s+Season\\s*[:]*.+?(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+\\s*of\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*Seasons?.+?(\\d+(?:-\\d+)?)\\s*of\\s*(\\w?)(?:\\s*Episodes?)?", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)Season\\s*[:]*\\s+(\\d+).+(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+\\s+of\\s*([\\w?])", "S$1E$2 of $3"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s*Seasons?.+?(\\d+(?:-\\d+)?)\\s*(?:Episodes?)\\s+of\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)Season\\s*[:]*\\s+(\\d+).+(?:Episodes?)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "S$1E$2"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)\\s*of\\s*(\\w?)(?:\\s*Episodes?)?", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)(\\d+)\\s+Season\\s*[:]*.+?(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+", "S$1E$2"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)\\s*(?:Episodes?)\\s+of\\s*(\\w?)", "S$1E$2 of $3"]
         - name: re_replace
-          args: ["(?i)Season\\s*[:]*\\s+(\\d+).+(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+", "S$1E$2"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?).+?(?:Episodes?)[\\s:]*(\\d+(?:-\\d+)?)", "S$1E$2"]
         - name: re_replace
-          args: ["(?i)Season\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "S$1"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+Seasons?.+?(\\d+(?:-\\d+)?)\\s+(?:\\s*Episodes?)", "S$1E$2"]
         - name: re_replace
-          args: ["(?i)(\\d+(?:-\\d+)?)\\s+Season", "S$1"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?).+?(\\d+(?:-\\d+)?)(?:\\s*Episodes?)", "S$1E$2"]
         - name: re_replace
-          args: ["(?i)(?:Episodes?)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)\\s*of\\s*([\\w?])", "E$1 of $2"]
+          args: ["(?i)Seasons?[\\s:]*(\\d+(?:-\\d+)?)", "S$1"]
         - name: re_replace
-          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+\\s+of\\s*([\\w?])", "E$1 of $2"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+Seasons?", "S$1"]
         - name: re_replace
-          args: ["(?i)(?:Episodes?)+\\s*[:]*\\s+(\\d+(?:-\\d+)?)", "E$1"]
+          args: ["(?i)(?:Episodes?)[\\s:]*(\\d+(?:-\\d+)?)\\s*of\\s*(\\w?)", "E$1 of $2"]
         - name: re_replace
-          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:Episodes?)+", "E$1"]
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:Episodes?)\\s+of\\s*(\\w?)", "E$1 of $2"]
+        - name: re_replace
+          args: ["(?i)(?:Episodes?)[\\s:]*(\\d+(?:-\\d+)?)", "E$1"]
+        - name: re_replace
+          args: ["(?i)(\\d+(?:-\\d+)?)\\s+(?:Episodes?)", "E$1"]
         - name: re_replace
           args: ["(\\([\\p{IsCyrillic}\\W]+\\))|(^[\\p{IsCyrillic}\\W\\d]+\\/ )|([\\p{IsCyrillic} \\-]+,+)|([\\p{IsCyrillic}]+)", "{{ if .Config.stripcyrillic }}{{ else }}$1$2$3$4{{ end }}"]
         - name: re_replace
           args: ["(?i)\\bHDTV[-\\s]?Rip\\b", "HDTV"]
+        - name: re_replace
+          args: ["(?i)\\bSAT[-\\s]?Rip\\b", "HDTV"]
         - name: re_replace
           args: ["(?i)\\bWEB[-\\s]?DL[-\\s]?Rip\\b", "WEB-DL"]
         - name: re_replace
@@ -260,7 +266,7 @@ search:
         - name: re_replace
           args: ["^[\\s&,\\.!\\?\\+\\-_\\|\\/':]+", ""]
         - name: re_replace
-          args: ["(?i)^\\(([SE]\\d+.*?)\\)[\\s\\/]*(.+)", "$2 $1"]
+          args: ["(?i)^\\(\\s*([SE]\\d+.*?)\\s*\\)[\\s\\/]*(.+)", "$2 $1"]
     details:
       selector: a[href^="./viewtopic.php?t="]
       attribute: href
