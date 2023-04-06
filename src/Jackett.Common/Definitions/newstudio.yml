@@ -80,6 +80,8 @@ search:
         - name: re_replace
           args: ["(?i)\\bHDTV[-\\s]?Rip\\b", "HDTV"]
         - name: re_replace
+          args: ["(?i)\\bSAT[-\\s]?Rip\\b", "HDTV"]
+        - name: re_replace
           args: ["(?i)\\bWEB[-\\s]?DL[-\\s]?Rip\\b", "WEB-DL"]
         - name: re_replace
           args: ["(?i)\\bWEB\\sRip\\b", "WEBRip"]
@@ -90,7 +92,7 @@ search:
         - name: re_replace
           args: ["^[\\s&,\\.!\\?\\+\\-_\\|\\/':]+", ""]
         - name: re_replace
-          args: ["(?i)^\\(([SE]\\d+.*?)\\)[\\s\\/]*(.+)", "$2 $1"]
+          args: ["(?i)^\\(\\s*([SE]\\d+.*?)\\s*\\)[\\s\\/]*(.+)", "$2 $1"]
         - name: append
           args: "{{ if .Config.addrussiantotitle }} RUS{{ else }}{{ end }}"
         - name: append
