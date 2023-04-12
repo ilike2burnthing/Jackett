@@ -40,9 +40,9 @@ search:
     - path: "{{ if .Keywords }}search/?search={{ .Keywords }}&cat=0&search_in=0{{ else }}today{{ end }}"
 
   keywordsfilters:
-    # strip season and ep
+    # strip season and/or ep
     - name: re_replace
-      args: ["(?i)\\b(?:S\\d{1,4}E\\d{1,4})\\b\\s?", ""]
+      args: ["(?i)\\b(?:[SE]\\d{1,4}){1,2}\\b\\s?", ""]
 
   rows:
     selector: tr[class^="ttable_col"]
@@ -60,6 +60,12 @@ search:
           args: ["(?i)(\\d+(?:-\\d+)?)[xх](\\d+(?:-\\d+)?)", "S$1E$2"]
         - name: re_replace
           args: ["(?i)(\\d+(?:-\\d+)?)\\s*из\\s*(\\d+)", "E$1 of $2"]
+        - name: re_replace
+          args: ["(?i)\\bFiles-х\\b", "Files-x"]
+        - name: re_replace
+          args: ["(?i)\\sот\\s([\\w\\p{P}\\p{S}]+)$", "-$1"]
+        - name: re_replace
+          args: ["\\s\\|\\s(\\w{4,})$", "-$1"]
         - name: re_replace
           args: ["(\\([\\p{IsCyrillic}\\W]+\\))|(^[\\p{IsCyrillic}\\W\\d]+\\/ )|([\\p{IsCyrillic} \\-]+,+)|([\\p{IsCyrillic}]+)", "{{ if .Config.stripcyrillic }}{{ else }}$1$2$3$4{{ end }}"]
         - name: re_replace
