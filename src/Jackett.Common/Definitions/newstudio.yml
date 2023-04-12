@@ -92,7 +92,7 @@ search:
         - name: re_replace
           args: ["^[\\s&,\\.!\\?\\+\\-_\\|\\/':]+", ""]
         - name: re_replace
-          args: ["(?i)^\\(\\s*([SE]\\d+.*?)\\s*\\)[\\s\\/]*(.+)", "$2 $1"]
+          args: ["(?i)^\\(\\s*([SE]\\d+.*?)\\s*\\)[\\s\\/\\|]*(.+)", "$2 $1"]
         - name: append
           args: "{{ if .Config.addrussiantotitle }} RUS{{ else }}{{ end }}"
         - name: append
