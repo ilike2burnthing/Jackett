@@ -1451,10 +1451,19 @@ namespace Jackett.Common.Indexers
 
                     if (Search.Rows.Count != null)
                     {
-                        var countVal = handleJsonSelector(Search.Rows.Count, parsedJson, variables);
+                        try
+                        {
+                            var countVal = handleJsonSelector(Search.Rows.Count, parsedJson, variables);
 
-                        if (int.TryParse(countVal, out var count) && count < 1)
-                            continue;
+                            if (int.TryParse(countVal, out var count) && count < 1)
+                            {
+                                continue;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.Trace(ex, "Failed to parse JSON rows count.");
+                        }
                     }
 
                     var rowsArray = JsonParseRowsSelector(parsedJson, Search.Rows.Selector);
@@ -1465,6 +1474,11 @@ namespace Jackett.Common.Indexers
                             continue;
 
                         throw new Exception("Error Parsing Rows Selector. There are 0 rows.");
+                    }
+
+                    if (rowsArray.Count == 0)
+                    {
+                        continue;
                     }
 
                     foreach (var Row in rowsArray)
@@ -2017,7 +2031,7 @@ namespace Jackett.Common.Indexers
                 case "category":
                     if (FieldModifiers.Contains("noappend"))
                     {
-                        logger.Warn("The \"noappend\" modifier is deprecated. Please switch to \"default\". See the Definition Format in the Wiki for more information.");
+                        logger.Warn($"CardigannIndexer ({Id}): The \"noappend\" modifier is deprecated. Please switch to \"default\". See the Definition Format in the Wiki for more information.");
                     }
 
                     var cats = MapTrackerCatToNewznab(value);
@@ -2033,7 +2047,7 @@ namespace Jackett.Common.Indexers
                 case "categorydesc":
                     if (FieldModifiers.Contains("noappend"))
                     {
-                        logger.Warn("The \"noappend\" modifier is deprecated. Please switch to \"default\". See the Definition Format in the Wiki for more information.");
+                        logger.Warn($"CardigannIndexer ({Id}): The \"noappend\" modifier is deprecated. Please switch to \"default\". See the Definition Format in the Wiki for more information.");
                     }
 
                     var catsDesc = MapTrackerCatDescToNewznab(value);

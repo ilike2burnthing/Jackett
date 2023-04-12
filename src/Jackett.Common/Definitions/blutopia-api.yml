@@ -83,7 +83,6 @@ search:
     sortField: "{{ .Config.sort }}"
     sortDirection: "{{ .Config.type }}"
     perPage: 100
-    page: 1
 
   keywordsfilters:
     - name: re_replace
@@ -92,8 +91,6 @@ search:
   rows:
     selector: data
     attribute: attributes
-    count:
-      selector: meta.total
 
   fields:
     category:
@@ -168,4 +165,4 @@ search:
     minimumseedtime:
       # 7 day (as seconds = 7 x 24 x 60 x 60)
       text: 604800
-# json UNIT3D 6.5.0b
+# json UNIT3D 7.0.0b

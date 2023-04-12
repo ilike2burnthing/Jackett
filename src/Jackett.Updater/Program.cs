@@ -366,6 +366,7 @@ namespace Jackett.Updater
                 "Definitions/filebase.yml",
                 "Definitions/film-paleis.yml",
                 "Definitions/filmsclub.yml",
+                "Definitions/ftuapps.yml",
                 "Definitions/gfxpeers.yml",
                 "Definitions/focusx.yml",
                 "Definitions/fouducinema.yml",
@@ -575,6 +576,7 @@ namespace Jackett.Updater
                 "Definitions/torrentbomb.yml",
                 "Definitions/torrentcouch.yml",
                 "Definitions/torrentdb.yml",
+                "Definitions/torrentdownloads.yml",
                 "Definitions/torrentfactory.yml",
                 "Definitions/torrentgalaxyorg.yml", // renamed to torrentgalaxy
                 "Definitions/torrenthane.yml",

@@ -9,6 +9,8 @@ links:
   - https://krazyzone.net/
 legacylinks:
   - http://krazyzone.net/
+certificates:
+  - 867fcd460bed7ded541674414267a54cc13f6d02 # selfsigned
 
 caps:
   categorymappings:
